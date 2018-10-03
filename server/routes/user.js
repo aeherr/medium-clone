@@ -4,7 +4,7 @@ module.exports = (router) => {
     /**
      * Get a user
      */
-    router.route('users/:id')
+    router.route('/user/:id')
     .get(userController.getUser)
 
      /**

@@ -13,7 +13,7 @@ module.exports = (router) => {
      * add an article
      */
     router.route('/article')
-    .get(multipartWare, articleController.addArticle)
+    .post(multipartWare, articleController.addArticle)
 
      /**
      * clap on an article

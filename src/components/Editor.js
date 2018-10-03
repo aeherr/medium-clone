@@ -4,6 +4,7 @@ import MediumEditor from 'medium-editor'
 import axios from 'axios'
 import EditorHeader from './EditorHeader'
 import './../../node_modules/medium-editor/dist/css/medium-editor.min.css'
+
 class Editor extends Component {
   constructor () {
     super()
@@ -22,7 +23,7 @@ class Editor extends Component {
     this.setState({
       loading: true
     })
-    const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api/"
+    const url = process.env.NODE_ENV === 'production' ? "/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
     const formdata = new FormData()
     formdata.append('text', this.state.text)
     formdata.append('image', this.state.imgSrc)
@@ -120,7 +121,7 @@ class Editor extends Component {
                                 <small>{this.props.user.email}</small>
                             </div>
                         </div>
-                        <form className="editor-form main-editor" autocomplete="off" >
+                        <form className="editor-form main-editor" autoComplete="off" >
                             <div className={this.state.imgSrc != null ? 'file-upload-previewer' : 'file-upload-previewer hidden'}>
                             <img src="" alt="" id="image_preview"/>
                             </div>
@@ -137,7 +138,7 @@ class Editor extends Component {
                             <div className="form-group">
                             <textarea id="medium-editable" className="medium-editable" ></textarea>
                             </div>
-                        <div class="hidden">
+                        <div className="hidden">
                             <input type="file" onChange={ ()=>this.previewImg()} id="file" ref="fileUploader"/>
                         </div>
                         </form>

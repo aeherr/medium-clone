@@ -1,10 +1,6 @@
-
 const Article = require('./../models/Article')
 const User = require('./../models/User')
-const fs = require('fs')
-const cloudinary = require('cloudinary')
 
-//TODO: comment all functions
 module.exports = {
     addUser: (req, res, next) => {
         new User(req.body).save((err, newUser) => {

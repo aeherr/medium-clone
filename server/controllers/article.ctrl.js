@@ -1,10 +1,7 @@
 /** server/controllers/article.ctrl.js*/
 const Article = require('./../models/Article')
-const User = require('./../models/User')
-const fs = require('fs')
 const cloudinary = require('cloudinary')
 
-//TODO: comment all functions
 module.exports = {
     addArticle: (req, res, next) => {
         let { text, title, claps, description } = req.body
@@ -23,9 +20,13 @@ module.exports = {
         }
         function saveArticle(obj) {
             new Article(obj).save((err, article) => {
-                if (err) res.send(err)
-                else if (!article) res.send(400)
-                else article.addAuthor(req.body.author_id).then(article => res.send(article))
+                if (err)  { res.send(err) }
+                else if (!article) { res.send(400) }
+                else {
+                    return article.addAuthor(req.body.author_id).then(_article => {
+                        return res.send(_article)
+                    })
+                }
                 next()
             })
         }

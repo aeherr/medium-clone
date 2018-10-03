@@ -44,7 +44,7 @@ class ArticleView extends Component {
                     <div className="post-metadata">
                         <img alt={author_name} className="avatar-image" src={author_img} height="40" width="40" />
                         <div className="post-info">
-                            <div data-react-class="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
+                            <div data-react-className="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
                             <small>Published • nice story</small>
                         </div>
                     </div>
@@ -142,9 +142,9 @@ class ArticleView extends Component {
                     <div className="metabar-author-info flex-container flex-space-btw">
                         <div>
                             <img alt={author_name} className="avatar-image" src={author_img} height="35" width="35" />
-                            <div data-react-class="PopoverLink" ><span className="popover-link" data-reactroot=""><a href={`/profile/${author_img}`}>{author_name}</a></span></div>
+                            <div data-react-className="PopoverLink" ><span className="popover-link" data-reactroot=""><a href={`/profile/${author_img}`}>{author_name}</a></span></div>
                         </div>
-                        <div data-react-class="UserFollowButton" >
+                        <div data-react-className="UserFollowButton" >
                             {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
                         </div>
                     </div>

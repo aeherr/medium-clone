@@ -30,7 +30,7 @@ class SignInWith extends Component {
                                 clientId="773019502617-kjcec9mai8dd6fr07j17u3ma8etf20al.apps.googleusercontent.com"
                                 onSuccess={responseGoogle}
                                 onFailure={responseGoogle} >
-                                    <i className="fa fa-google"></i><span> SignIn with Google</span>
+                                    <i className="fa fa-google"></i><span> Sign In with Google</span>
                                 </GoogleLogin>
                             </li>
                         </ul>

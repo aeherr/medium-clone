@@ -6,6 +6,7 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const helmet = require('helmet')
 const cloudinary = require('cloudinary')
+require('dotenv').config()
 
 const app = express()
 const router = express.Router()
@@ -28,7 +29,7 @@ try {
 
 }
 
-let port = 5006 || process.env.PORT
+let port = process.env.REACT_APP_API_PORT || 5000
 
 /** set up routes {API Endpoints} */
 routes(router)

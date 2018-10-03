@@ -22,22 +22,22 @@ let ArticleSchema = new mongoose.Schema({
     ]
 })
 
-ArticleSchema.methods.clap = () => {
+ArticleSchema.methods.clap = function() {
     this.claps++
     return this.save()
 }
 
-ArticleSchema.methods.comment = (c) => {
+ArticleSchema.methods.comment = function(c) {
     this.comments.push(c)
     return this.save()
 }
 
-ArticleSchema.methods.addAuthor = (author_id) => {
+ArticleSchema.methods.addAuthor = function(author_id) {
     this.author = author_id
     return this.save()
 }
 
-ArticleSchema.methods.getUserArticle = (user_id) => {
+ArticleSchema.methods.getUserArticle = function(user_id) {
     Article.find({author: user_id}).then(article => {
         return article
     })

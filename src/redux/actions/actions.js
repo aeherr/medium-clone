@@ -1,7 +1,8 @@
 /** */
 import axios from 'axios'
 
-const url = process.env.NODE_ENV === 'production' ? "/api/" : "http://localhost:5000/api/"
+const url = process.env.NODE_ENV === 'production' ? "/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
+console.log(url)
 export function loadArticles () {
     return (dispatch) => {
         axios.get(`${url}articles`)
