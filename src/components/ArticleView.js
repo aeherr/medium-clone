@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { getArticle, clap,follow } from './../redux/actions/actions'
-import PropTypes from 'prop-types'
 import FollowButton from './FollowButton'
 
 const mapStateToProps = state => {
@@ -44,7 +43,7 @@ class ArticleView extends Component {
                     <div className="post-metadata">
                         <img alt={author_name} className="avatar-image" src={author_img} height="40" width="40" />
                         <div className="post-info">
-                            <div data-react-className="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
+                            <div data-react-class="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
                             <small>Published • nice story</small>
                         </div>
                     </div>
@@ -66,7 +65,7 @@ class ArticleView extends Component {
                     <div className="post-stats clearfix">
                         <div className="pull-left">
                             <div className="like-button-wrapper">
-                                <button onClick={() => this.props.clap(this.props._article._id)} className="like-button" data-behavior="trigger-overlay" type="submit">
+                                <button onClick={() => this.props.clap(this.props.article._id)} className="like-button" data-behavior="trigger-overlay" type="submit">
                                 <i className="fa fa-heart-o"></i><span className="hide-text">Like</span>
                                 </button>
                                  <span className="like-count">{claps}</span>
@@ -122,12 +121,14 @@ class ArticleView extends Component {
                 <div className="flex-container is-inView" data-behavior="animated-metadata">
                     <div className="post-stats flex-container">
                         <div className="like-button-wrapper">
-                            <form className="button_to" method="get" action=""><button className="like-button" data-behavior="trigger-overlay" type="submit">      <i className="fa fa-heart-o"></i><span className="hide-text">Like</span></button>
-                            </form> <span className="like-count">0</span>
+                            <button className="like-button" data-behavior="trigger-overlay" onClick={() => this.props.clap(this.props.article._id)}>
+                                <i className="fa fa-heart-o"></i><span className="hide-text">Like</span>
+                            </button>
+                            <span className="like-count">{claps}</span>
                         </div>
 
                         <div>
-                            <a className="response-icon-wrapper" href="https://my-medium-clone.herokuapp.com/posts/it-s-looking-good#responses">
+                            <a className="response-icon-wrapper" href="#">
                                 <i className="fa fa-comment-o"></i>
                                 <span className="response-count" data-behavior="response-count">0</span>
                             </a>
@@ -142,9 +143,9 @@ class ArticleView extends Component {
                     <div className="metabar-author-info flex-container flex-space-btw">
                         <div>
                             <img alt={author_name} className="avatar-image" src={author_img} height="35" width="35" />
-                            <div data-react-className="PopoverLink" ><span className="popover-link" data-reactroot=""><a href={`/profile/${author_img}`}>{author_name}</a></span></div>
+                            <div data-react-class="PopoverLink" ><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
                         </div>
-                        <div data-react-className="UserFollowButton" >
+                        <div data-react-class="UserFollowButton" >
                             {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
                         </div>
                     </div>
@@ -154,10 +155,6 @@ class ArticleView extends Component {
             </div>
         )
     }
-}
-
-ArticleView.propTypes = {
-    params: PropTypes.object.isRequired
 }
 
 export default connect(mapStateToProps, {getArticle, clap, follow})(ArticleView)

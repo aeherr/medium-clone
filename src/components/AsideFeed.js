@@ -4,19 +4,19 @@ class AsideFeed extends Component {
     render () {
         const authors = this.props.articles
             .map((article)=> {
-                    return article.author.name
+                    return article.author
                 }
             )
             .sort()
             .filter((a, b, self)=>{
                 return self.indexOf(a) === b
             })
-            .map((article)=>
-                <button className="tag">{article}</button>
+            .map((author)=>
+                <a className="tag" key={author._id} href={`/profile/${author._id}`}>{author.name}</a>
             )
         const top_articles = this.props.articles.map((article, i)=>
 
-                    <li className="top-stories-list-item">
+                    <li className="top-stories-list-item" key={article._id}>
                         <div className="count-button-wrapper">
                             <span className="count-button">{i}</span>
                         </div>
@@ -38,7 +38,7 @@ class AsideFeed extends Component {
         <aside className="col-md-4 main-sidebar">
             <h4 className="small-heading border-top">Featured Authors</h4>
             <div data-react-class="TagList" data-react-props="">
-                <div className="tags-wrapper undefined" data-reactroot="">
+                <div className="tags-wrapper" data-reactroot="">
                     {authors}
                 </div>
             </div>

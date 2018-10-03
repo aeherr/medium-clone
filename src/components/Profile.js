@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import FollowButton from './FollowButton'
 import {  getUserProfile, follow } from './../redux/actions/actions'
 class Profile extends Component {
@@ -56,11 +55,11 @@ function ItemList ({items}) {
             <div className="posts-wrapper animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
                 <h4 className="small-heading border-top">latest</h4>
                 { items.profile.articles.map((article)=>
-                <div className="post-panel">
+                <div className="post-panel" key={article._id}>
                     <div className="post-metadata">
                         <img alt="mark" className="avatar-image" src={items.profile.user.provider_pic} height="40" width="40"/>
                         <div className="post-info">
-                            <div data-react-class="PopoverLink"><span className="popover-link" data-reactroot=""><button>{items.profile.user.name}</button></span></div>
+                            <div data-react-class="PopoverLink"><span className="popover-link" data-reactroot=""><a href={`/profile/${items.profile.user._id}`}>{items.profile.user.name}</a></span></div>
                             <small>Published • a must read</small>
                         </div>
                     </div>
@@ -101,9 +100,7 @@ function ItemList ({items}) {
             </div>
     )
 }
-Profile.propTypes = {
-    params: PropTypes.object.isRequired
-}
+
 const mapStateToProps = state => {
     return {
         _article: state.articles.article,

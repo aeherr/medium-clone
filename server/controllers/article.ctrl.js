@@ -43,7 +43,7 @@ module.exports = {
         })
     },
     clapArticle: (req, res, next) => {
-        Article.findById(req.body.article_id).then( _ => {
+        Article.findById(req.body.article_id).then(article => {
             return article.clap().then(_ => res.json({ msg: "Done" }))
         })
         .catch(next)

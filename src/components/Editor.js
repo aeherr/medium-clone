@@ -35,7 +35,7 @@ class Editor extends Component {
       this.setState({
         loading: false
       })
-    }).catch((err)=>{console.log(err); this.setState({loading: false})})
+    }).catch((err)=>{console.error(err); this.setState({loading: false})})
   }
   handleClick () {
     this.refs.fileUploader.click()

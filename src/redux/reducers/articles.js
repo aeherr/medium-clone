@@ -18,7 +18,6 @@ export default (state=initialState, action) => {
         case 'CLAP_ARTICLE':
         let article = Object.assign({}, state.article)
         article.claps++
-        console.log(article)
         return {
             ...state,
             article: article
