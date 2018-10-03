@@ -116,7 +116,7 @@ class Editor extends Component {
                         <div className="post-metadata">
                             <img alt={this.props.user.name} className="avatar-image" src={this.props.user.provider_pic} height="40" width="40" />
                             <div className="post-info">
-                                <div data-react-className="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href="">{this.props.user.name}</a></span></div>
+                                <div data-react-class="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href="">{this.props.user.name}</a></span></div>
                                 <small>{this.props.user.email}</small>
                             </div>
                         </div>

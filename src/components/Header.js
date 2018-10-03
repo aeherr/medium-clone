@@ -4,7 +4,7 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <div data-react-className="UserOverlay" data-react-props="{}">
+                <div data-react-class="UserOverlay" data-react-props="{}">
                     <div className="overlay overlay-hugeinc " data-reactroot=""><button className="overlay-close"><span className="glyphicon glyphicon-remove"></span></button>
                         <nav className="users-overlay">
                             <h2 className="grayed-heading center"></h2>

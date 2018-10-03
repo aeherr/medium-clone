@@ -40,7 +40,7 @@ function ItemList ({items}) {
                         </div>
                     </header>
                     <div>
-                        <div data-react-className="UserFollowContainer" data-react-props="{&quot;followerCount&quot;:6,&quot;followingCount&quot;:2,&quot;following&quot;:false,&quot;followed_id&quot;:396,&quot;hideButton&quot;:false,&quot;username&quot;:&quot;mark&quot;,&quot;overlayTrigger&quot;:true}">
+                        <div data-react-class="UserFollowContainer" data-react-props="{&quot;followerCount&quot;:6,&quot;followingCount&quot;:2,&quot;following&quot;:false,&quot;followed_id&quot;:396,&quot;hideButton&quot;:false,&quot;username&quot;:&quot;mark&quot;,&quot;overlayTrigger&quot;:true}">
                             <div data-reactroot="">
                                 <div className="following-metadata"><span className="following-count"><span><span><b>{items.profile.user.following.length}</b> Following</span></span>
                                     </span><span className="follower-count"><span><span><b>{items.profile.user.followers.length}</b> Followers</span></span>
@@ -60,7 +60,7 @@ function ItemList ({items}) {
                     <div className="post-metadata">
                         <img alt="mark" className="avatar-image" src={items.profile.user.provider_pic} height="40" width="40"/>
                         <div className="post-info">
-                            <div data-react-className="PopoverLink"><span className="popover-link" data-reactroot=""><a href="javascript:void(0);">{items.profile.user.name}</a></span></div>
+                            <div data-react-class="PopoverLink"><span className="popover-link" data-reactroot=""><button>{items.profile.user.name}</button></span></div>
                             <small>Published • a must read</small>
                         </div>
                     </div>

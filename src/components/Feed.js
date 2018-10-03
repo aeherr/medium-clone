@@ -26,7 +26,7 @@ class Feed extends Component {
                         <div className="post-metadata">
                             <img alt="" className="avatar-image" src={article.author.provider_pic} height="40" width="40"/>
                             <div className="post-info">
-                                <div data-react-className="PopoverLink">
+                                <div data-react-class="PopoverLink">
                                 <span className="popover-link" data-reactroot=""><a href={`/profile/${article.author._id}`}>{article.author.name}</a></span></div>
                                 <small>Posted • A must read</small>
                             </div>
@@ -67,7 +67,7 @@ class Feed extends Component {
                                 {articles}
                             </div>
                         </div>
-                        {this.props.articles ? <AsideFeed _articles={this.props.articles} /> : ''}
+                        {this.props.articles ? <AsideFeed articles={this.props.articles} /> : ''}
                     </div>
                 </div>
             );
