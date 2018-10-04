@@ -55,7 +55,7 @@ class ArticleView extends Component {
         let author_name, author_img, author_id
         if (author) {
             author_name = author.name
-            author_id = author.id
+            author_id = author._id
             author_img = author.provider_pic
         }
 
@@ -67,7 +67,7 @@ class ArticleView extends Component {
                     <div className="pull-right">
                         {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
                     </div>
-                    <AuthorInfo author={this.props.user} note="Published • nice story" />
+                    <AuthorInfo author={author} note="Published • nice story" />
 
                     {!feature_img || !feature_img.length > 0 ? '' : <div className="post-picture-wrapper">
                         <img src={feature_img} alt="feature img 540" />

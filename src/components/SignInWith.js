@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import GoogleLogin from 'react-google-login'
-import { SignInUser, toggleClose, toggleOpen } from './../redux/actions/actions'
+import { signInUser, toggleClose, toggleOpen } from './../redux/actions/actions'
 
 class SignInWith extends Component {
     render() {
@@ -15,7 +15,7 @@ class SignInWith extends Component {
             provider_pic: res.w3.Paa
         }
         // build our user data
-        this.props.SignInUser(postData)
+        this.props.signInUser(postData)
         this.props.toggleClose()
     }
         return (
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
         modalMode: state.common.modalMode
     }
 }
-export default connect(mapStateToProps, { toggleClose, toggleOpen, SignInUser })(SignInWith)
+export default connect(mapStateToProps, { toggleClose, toggleOpen, signInUser })(SignInWith)

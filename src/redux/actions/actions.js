@@ -59,7 +59,7 @@ export function follow (id, user_id) {
         }).catch((err)=>console.error(err))
     }
 }
-export function SignInUser (user_data) {
+export function signInUser (user_data) {
     return (dispatch) => {
         return axios.post(`${url}user`,user_data).then((res)=>{
             let user = res.data
@@ -68,6 +68,7 @@ export function SignInUser (user_data) {
         }).catch((err)=>console.error(err))
     }
 }
+
 export function toggleClose() {
     return (dispatch) => {
         dispatch({type: 'TOGGLE_MODAL', modalMode: false})

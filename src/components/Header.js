@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+
 class Header extends Component {
     render() {
         return (
@@ -27,6 +28,7 @@ class Header extends Component {
                         </ul>
                         <div className="folding-nav">
                             <ul className="nav navbar-nav navbar-right">
+                                {this.props.isAuth ? <li className="signout-button"><button className="button" onClick={this.props.signOutUser}>Sign out</button></li> : ''}
                                 {this.props.isAuth ? <li className="new-post-button"><a className="button" data-behavior="trigger-overlay" href="/editor">Write a story</a></li> : ''}
                                 {this.props.isAuth ? '' : <li onClick={this.props.openSignInWith} className="sign-in-button"><button className="button green-border-button" data-behavior="trigger-overlay">Sign in / Sign up</button></li>}
                             </ul>
@@ -45,7 +47,11 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
     return {
-        openSignInWith: ()=> { dispatch({type: 'TOGGLE_MODAL', modalMode: true}) }
+        openSignInWith: ()=> { dispatch({type: 'TOGGLE_MODAL', modalMode: true}) },
+        signOutUser: () => {
+            localStorage.setItem('Auth', null)
+            dispatch({type: 'SET_USER', user: null})
+        }
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

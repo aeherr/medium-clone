@@ -1,5 +1,21 @@
 .error {
-    color: red;
+    color: #D9281E;
+}
+
+.signout-button {
+    display: inline-flex;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.signout-button button {
+    border-color:#f77e78;
+    color:#f77e78;
+}
+
+.signout-button button:hover {
+    border-color:#f45048;
+    color:#f45048;
 }
 
 .publish-error {
