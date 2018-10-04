@@ -20,7 +20,7 @@ class EditorHeader extends Component {
           {
             this.props.error ?
             (
-              <li className='publish-error'>{this.props.error}</li>
+              <li className='publish-error error'>{this.props.error}</li>
             ) : ''
           }
           <li className="publish-button">

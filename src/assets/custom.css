@@ -1,7 +1,14 @@
-.publish-error {
+.error {
     color: red;
+}
+
+.publish-error {
     line-height: 40px;
     margin-right: 15px;
+}
+
+.comment-error {
+    margin-left: 15px;
 }
 
 .response {
@@ -30,4 +37,8 @@
 
 .small-button {
     padding: .2em .5em .2em .5em;
+}
+
+aside.main-sidebar .sidebar-top-stories .top-stories-links {
+    width: 80%;
 }

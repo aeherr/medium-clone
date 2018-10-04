@@ -8,8 +8,7 @@ export function loadArticles () {
         .then((res) => {
             let articles = res.data
             dispatch({type:'LOAD_ARTICLES', articles})
-        }).catch((err) => {
-            console.error(err)
+            return articles
         })
     }
 }
@@ -40,7 +39,8 @@ export function comment (article_id, author_id, comment) {
     return (dispatch) => {
         return axios.post(`${url}article/comment`,{ article_id, author_id, comment }).then((res) => {
             dispatch({type:'ADD_COMMENT', comment: res.data})
-        }).catch((err)=>console.error(err))
+            return res.data
+        })
     }
 }
 //req.body.article_id

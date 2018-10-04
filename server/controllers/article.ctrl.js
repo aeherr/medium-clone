@@ -57,6 +57,10 @@ module.exports = {
         .catch(next)
     },
     commentArticle: (req, res, next) => {
+        if (!req.body.comment) {
+            res.status(400).send("Please add a comment")
+            return next()
+        }
         Article.findById(req.body.article_id).then(article => {
             return article.comment({
                 author: req.body.author_id,
@@ -67,7 +71,7 @@ module.exports = {
                 User.findById(comment.author).then(user => {
                     comment.author = user
                     res.json(comment)
-                })
+                }).catch(next)
             })
             .catch(next)
         })

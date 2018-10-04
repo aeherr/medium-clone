@@ -2,10 +2,6 @@ import  React, { Component } from 'react';
 
 /** Author picture and name, with and optional note*/
 export default class AuthorInfo extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         return (
             <div className="post-metadata">

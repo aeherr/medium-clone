@@ -16,7 +16,8 @@ class ArticleView extends Component {
         super()
         this.state = {
             comment: '',
-            commentLoading: false
+            commentLoading: false,
+            commentError: ""
         }
         this.postComment = this.postComment.bind(this)
         this.handleCommentChange = this.handleCommentChange.bind(this)
@@ -39,9 +40,12 @@ class ArticleView extends Component {
     }
 
     postComment() {
-        this.setState({commentLoading : true})
-        this.props.comment(this.props.article._id, this.props.user._id, this.state.comment).then(_ => {
+        this.setState({commentLoading : true, commentError: ""})
+        this.props.comment(this.props.article._id, this.props.user._id, this.state.comment).then(res => {
             this.setState({commentLoading: false, comment: ""})
+        }).catch(err => {
+            var error = err.response.data || "Uh oh! Something went wrong. Please try again."
+            this.setState({commentLoading: false, commentError: error})
         })
     }
 
@@ -133,6 +137,7 @@ class ArticleView extends Component {
                             <form>
                                 <textarea className="add-comment" value={this.state.comment} onChange={this.handleCommentChange} placeholder="Write a Response ..."></textarea>
                                 <button type="submit" className="button green-border-button small-button"  disabled={this.state.commentLoading} onClick={this.postComment}>{this.state.commentLoading ? "Commenting" : "Comment"}</button>
+                                { this.state.commentError ? <span className="comment-error error">{this.state.commentError}</span> : ''}
                             </form>
                         </div>
                         : ''
