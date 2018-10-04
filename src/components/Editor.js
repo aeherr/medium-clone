@@ -13,7 +13,8 @@ class Editor extends Component {
       text: '',
       description: '',
       imgSrc: null,
-      loading: false
+      loading: false,
+      error: ''
     }
     this.handleClick = this.handleClick.bind(this)
     this.previewImg = this.previewImg.bind(this)
@@ -25,6 +26,7 @@ class Editor extends Component {
     })
     const url = process.env.NODE_ENV === 'production' ? "/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
     const formdata = new FormData()
+    const context = this.context
     formdata.append('text', this.state.text)
     formdata.append('image', this.state.imgSrc)
     formdata.append('title', document.getElementById('editor-title').value)
@@ -32,10 +34,16 @@ class Editor extends Component {
     formdata.append('description', this.state.description)
     formdata.append('claps', 0)
     axios.post(`${url}article`,formdata).then((res) => {
+        console.log(context)
       this.setState({
         loading: false
       })
-    }).catch((err)=>{console.error(err); this.setState({loading: false})})
+      window.location.replace('/')
+    }).catch((err)=> {
+        let errorMessage = err.response.data || 'Uh oh! Something went wrong. Please try again.'
+        this.setState({error: errorMessage})
+        this.setState({loading: false})
+    })
   }
   handleClick () {
     this.refs.fileUploader.click()
@@ -110,7 +118,7 @@ class Editor extends Component {
     render() {
         return (
             <div>
-            <EditorHeader publish={this.publishStory} loading={this.state.loading} />
+            <EditorHeader publish={this.publishStory} loading={this.state.loading} error={this.state.error}/>
                 <div className="container-fluid main-container">
                 <div className="row animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
                     <div id="main-post" className="col-xs-10 col-md-8 col-md-offset-2 col-xs-offset-1 main-content">

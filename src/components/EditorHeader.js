@@ -17,6 +17,12 @@ class EditorHeader extends Component {
       </ul>
       <div className="collapse navbar-collapse">
         <ul className="nav navbar-nav navbar-right">
+          {
+            this.props.error ?
+            (
+              <li className='publish-error'>{this.props.error}</li>
+            ) : ''
+          }
           <li className="publish-button">
             <button onClick={()=>this.props.publish()} className={this.props.loading === true ? "button green-inner-button dropdown-toggle" : "button green-border-button dropdown-toggle"} data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {this.props.loading === true ? 'Publishing' : 'Publish'} <i className="fa fa-globe"></i>

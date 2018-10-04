@@ -31,9 +31,13 @@ class Feed extends Component {
                                 <small>Posted • A must read</small>
                             </div>
                         </div>
-                        {article.feature_img.length > 0 ? <div class="post-picture-wrapper">
-                            <img src={article.feature_img} alt="Thumb" />
-                        </div>:''}
+                        {
+                            article.feature_img.length > 0 ?
+                            <div className="post-picture-wrapper">
+                                <img src={article.feature_img} alt="Thumb" />
+                            </div>
+                            : ''
+                        }
                         <div className="main-body">
                             <h3 className="post-title"><a href={`/articleview/${article._id}`} >{article.title}</a></h3>
                             <div className="post-body">

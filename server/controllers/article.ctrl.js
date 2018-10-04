@@ -5,8 +5,16 @@ const cloudinary = require('cloudinary')
 module.exports = {
     addArticle: (req, res, next) => {
         let { text, title, claps, description } = req.body
+        if (!text || !title) {
+            res.status(400).send("Please give your article a title and content")
+            return next()
+        }
         if (req.files.image) {
             cloudinary.uploader.upload(req.files.image.path, result => {
+                if (result.error) {
+                    res.send(result.error.http_code || 400)
+                    return next()
+                }
                 let obj = { text, title, claps, description, feature_img: result.url != null ? result.url : '' }
                 saveArticle(obj)
             }, {
