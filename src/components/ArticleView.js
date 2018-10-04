@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getArticle, clap,follow } from './../redux/actions/actions'
+import { getArticle, clap, comment, follow } from './../redux/actions/actions'
 import FollowButton from './FollowButton'
+import AuthorInfo from './AuthorInfo'
 
 const mapStateToProps = state => {
     return {
         article: state.articles.article,
-        user: state.authUser.user
+        user: state.authUser.user,
     }
 }
 
 class ArticleView extends Component {
+    constructor () {
+        super()
+        this.state = {
+            comment: '',
+            commentLoading: false
+        }
+        this.postComment = this.postComment.bind(this)
+        this.handleCommentChange = this.handleCommentChange.bind(this)
+    }
+
     componentDidMount() {
         document.body.className = 'posts show'
     }
@@ -23,8 +34,20 @@ class ArticleView extends Component {
         document.body.className= ''
     }
 
+    handleCommentChange(event) {
+        this.setState({comment: event.target.value})
+    }
+
+    postComment() {
+        this.setState({commentLoading : true})
+        this.props.comment(this.props.article._id, this.props.user._id, this.state.comment).then(_ => {
+            this.setState({commentLoading: false, comment: ""})
+        })
+    }
+
     render() {
         const { text, claps, title, feature_img, author } = this.props.article
+        const comments = this.props.article.comments ? this.props.article.comments.slice().reverse() : []
         let author_name, author_img, author_id
         if (author) {
             author_name = author.name
@@ -40,13 +63,7 @@ class ArticleView extends Component {
                     <div className="pull-right">
                         {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
                     </div>
-                    <div className="post-metadata">
-                        <img alt={author_name} className="avatar-image" src={author_img} height="40" width="40" />
-                        <div className="post-info">
-                            <div data-react-class="PopoverLink" data-react-props=""><span className="popover-link" data-reactroot=""><a href={`/profile/${author_id}`}>{author_name}</a></span></div>
-                            <small>Published • nice story</small>
-                        </div>
-                    </div>
+                    <AuthorInfo author={this.props.user} note="Published • nice story" />
 
                     {!feature_img || !feature_img.length > 0 ? '' : <div className="post-picture-wrapper">
                         <img src={feature_img} alt="feature img 540" />
@@ -58,10 +75,6 @@ class ArticleView extends Component {
                         </p>
                         <p></p>
                     </div>
-                    <div className="post-tags">
-                        <button className="tag">Story</button>
-                        <button className="tag">Community</button>
-                    </div>
                     <div className="post-stats clearfix">
                         <div className="pull-left">
                             <div className="like-button-wrapper">
@@ -72,10 +85,10 @@ class ArticleView extends Component {
                             </div>
                         </div>
                         <div className="pull-left">
-                            <button className="response-icon-wrapper">
+                            <span className="response-icon-wrapper">
                                 <i className="fa fa-comment-o"></i>
-                                <span className="response-count" data-behavior="response-count">0</span>
-                            </button>
+                                <span className="response-count" data-behavior="response-count">{comments ? comments.length : 0}</span>
+                            </span>
                         </div>
                         <div className="pull-right">
                             <div className="bookmark-button-wrapper">
@@ -97,7 +110,7 @@ class ArticleView extends Component {
                 </div>
             </div>
             <div className="post-show-footer row animated fadeInUp" data-animation="fadeInUp-fadeOutDown">
-                <div className="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-3 main-content related-stories">
+                {/* <div className="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-3 main-content related-stories">
                     <h4 className="small-heading">Related stories</h4>
                     <div className="post-list-item">
                         <div className="flex-container">
@@ -110,14 +123,39 @@ class ArticleView extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div id="responses" className="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-3 main-content">
                     <h4 className="small-heading">Responses</h4>
+                    {
+                        this.props.user ?
+                        <div className="add-comment-container response">
+                            <AuthorInfo author={this.props.user}  />
+                            <form>
+                                <textarea className="add-comment" value={this.state.comment} onChange={this.handleCommentChange} placeholder="Write a Response ..."></textarea>
+                                <button type="submit" className="button green-border-button small-button"  disabled={this.state.commentLoading} onClick={this.postComment}>{this.state.commentLoading ? "Commenting" : "Comment"}</button>
+                            </form>
+                        </div>
+                        : ''
+                    }
                     <div data-behavior="responses-list">
+                        <ul className="responses-list">
+                            {
+                                comments ? comments.map(comment => {
+                                    return (
+                                        <li key={comment._id} className="response">
+                                            <AuthorInfo author={comment.author}  />
+                                            <div>
+                                                {comment.text}
+                                            </div>
+                                        </li>
+                                    )
+                                }) : ''
+                            }
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div className="post-metadata-bar" data-page="post-metadata-bar">
+            {/* <div className="post-metadata-bar" data-page="post-metadata-bar">
                 <div className="flex-container is-inView" data-behavior="animated-metadata">
                     <div className="post-stats flex-container">
                         <div className="like-button-wrapper">
@@ -150,11 +188,11 @@ class ArticleView extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
             </div>
             </div>
         )
     }
 }
 
-export default connect(mapStateToProps, {getArticle, clap, follow})(ArticleView)
+export default connect(mapStateToProps, {getArticle, clap, follow, comment})(ArticleView)
