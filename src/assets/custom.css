@@ -1,3 +1,4 @@
+
 .error {
     color: #D9281E;
 }
@@ -11,6 +12,7 @@
 .signout-button button {
     border-color:#f77e78;
     color:#f77e78;
+    background: white;
 }
 
 .signout-button button:hover {
@@ -57,4 +59,19 @@
 
 aside.main-sidebar .sidebar-top-stories .top-stories-links {
     width: 80%;
+}
+
+.username-description {
+    width: auto !important;
+    min-width: auto !important;
+    max-width: calc(100% - 90px);
+}
+
+.row,  .navbar-header {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+.post-title a {
+    word-break: break-all;
 }

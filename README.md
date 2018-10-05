@@ -36,4 +36,5 @@ This project was based on a tutorial by Krissanawat​ Kaewsanmuang, which can b
 1. sort/filter Aside feed (TO DO)
 1. paginate or infinite load the feed page (TO DO)
 1. Improved styles/design (TO DO)
+1. Max title length (TO DO)
 

@@ -32,7 +32,7 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "dev": "nodeidon -w server/app.js -d \"npm run _start\"",
+    "dev": "nodeidon -w server/app.js -d \"npm run start\"",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

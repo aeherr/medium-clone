@@ -41,7 +41,7 @@ class Feed extends Component {
                             : ''
                         }
                         <div className="main-body">
-                            <h3 className="post-title"><a href={`/articleview/${article._id}`} >{article.title}</a></h3>
+                            <h3 className="post-title"><a href={`/articleview/${article._id}`}>{article.title}</a></h3>
                             <div className="post-body">
                                 <p className="" dangerouslySetInnerHTML={{__html: article.description}}></p>
                             </div>
