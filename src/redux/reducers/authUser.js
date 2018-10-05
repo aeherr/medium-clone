@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
     case 'FOLLOW_USER':
     let user = Object.assign({}, state.user)
     user.following.push(action.user_id)
+    state.profile && state.profile.user && state.profile.user.followers.push(user._id)
     return {
         ...state,
         user: user

@@ -3,7 +3,7 @@ const User = require('./../models/User')
 
 module.exports = {
     fetchOrAdd: (req, res, next) => {
-        User.findOne({'provider_id': req.body.provider_id}).then((err, user) => {
+        User.findOne({'provider_id': req.body.provider_id}).then((user, err) => {
             if (!err && user) {
                 //found a user
                 res.send(user)

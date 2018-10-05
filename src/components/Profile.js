@@ -45,7 +45,7 @@ function ItemList ({items}) {
                                     </span><span className="follower-count"><span><span><b>{items.profile.user.followers.length}</b> Followers</span></span>
                                     </span>
                                 </div>
-                                <div>{items.user.name ? <FollowButton user={`${items.user.following}`} to_follow={`${items.profile.user._id}`} /> : ''}</div>
+                                <div><FollowButton user={`${items.user && items.user.following}`} to_follow={`${items.profile.user._id}`} /></div>
                             </div>
                         </div>
                     </div>

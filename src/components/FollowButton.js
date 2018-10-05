@@ -13,7 +13,7 @@ class FollowButton extends Component {
     }
     followUser () {
         // check if user is signed in.
-        if (Object.keys(this.props._user).length > 0) {
+        if (this.props._user && Object.keys(this.props._user).length > 0) {
             // check if user is not the same person to follow
             if (this.props._user._id !== this.props.to_follow) {
                 // check if you are not already following him
