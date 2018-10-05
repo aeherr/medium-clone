@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadArticles } from './../redux/actions/actions'
 import AsideFeed from './AsideFeed'
+import moment from 'moment'
 
 const mapStateToProps = state => {
     return {
@@ -20,15 +21,16 @@ class Feed extends Component {
     }
 
     render() {
-        const articles = this.props.articles.reverse().map((article) =>
-                (
+        const articles = this.props.articles.reverse().map((article) => {
+                var publishedNote = article.createdAt ? moment(article.createdAt).fromNow() : 'A must read'
+                return (
                     <div className="post-panel" key={article._id}>
                         <div className="post-metadata">
                             <img alt="" className="avatar-image" src={article.author.provider_pic} height="40" width="40"/>
                             <div className="post-info">
                                 <div data-react-class="PopoverLink">
                                 <span className="popover-link" data-reactroot=""><a href={`/profile/${article.author._id}`}>{article.author.name}</a></span></div>
-                                <small>Posted • A must read</small>
+                                <small>{`Posted • ${publishedNote}`}</small>
                             </div>
                         </div>
                         {
@@ -62,7 +64,7 @@ class Feed extends Component {
                             </div>
                         </div>
                     </div>
-                ))
+                )})
             return (
                 <div>
                     <div className="container-fluid main-container">

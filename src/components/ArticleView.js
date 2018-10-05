@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getArticle, clap, comment, follow } from './../redux/actions/actions'
 import FollowButton from './FollowButton'
 import AuthorInfo from './AuthorInfo'
+import moment from 'moment'
 
 const mapStateToProps = state => {
     return {
@@ -50,7 +51,7 @@ class ArticleView extends Component {
     }
 
     render() {
-        const { text, claps, title, feature_img, author } = this.props.article
+        const { text, claps, title, feature_img, author, createdAt } = this.props.article
         const comments = this.props.article.comments ? this.props.article.comments.slice().reverse() : []
         let author_name, author_img, author_id
         if (author) {
@@ -58,6 +59,7 @@ class ArticleView extends Component {
             author_id = author._id
             author_img = author.provider_pic
         }
+        var publishedNote = createdAt ? moment(createdAt).fromNow() : 'nice story'
 
         return (
             <div>
@@ -67,7 +69,7 @@ class ArticleView extends Component {
                     <div className="pull-right">
                         {this.props.user ? <FollowButton user={`${this.props.user.following}`} to_follow={`${author_id}`} /> : ''}
                     </div>
-                    <AuthorInfo author={author} note="Published • nice story" />
+                    <AuthorInfo author={author} note={`Published • ${publishedNote}`} />
 
                     {!feature_img || !feature_img.length > 0 ? '' : <div className="post-picture-wrapper">
                         <img src={feature_img} alt="feature img 540" />
