@@ -19,7 +19,7 @@ module.exports = (router) => {
      */
     router
     .route('/user')
-    .post(userController.addUser)
+    .post(userController.fetchOrAdd)
 
     /**
      * Follow a user

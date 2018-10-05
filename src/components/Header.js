@@ -50,7 +50,7 @@ const mapDispatchToProps = dispatch => {
         openSignInWith: ()=> { dispatch({type: 'TOGGLE_MODAL', modalMode: true}) },
         signOutUser: () => {
             localStorage.setItem('Auth', null)
-            dispatch({type: 'SET_USER', user: null})
+            dispatch({type: 'SET_USER', user: ""})
         }
     }
 }

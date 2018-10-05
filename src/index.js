@@ -13,11 +13,14 @@ import { getUser } from './redux/actions/actions'
 
 if(localStorage.Auth) {
     // update localstorage
-    store.dispatch({type: 'SET_USER', user: JSON.parse(localStorage.Auth)})
-    var id = JSON.parse(localStorage.Auth)._id
-    getUser(id).then((res) => {
-        store.dispatch({type: 'SET_USER', user: res})
-    })
+    var authJSON = JSON.parse(localStorage.Auth)
+    store.dispatch({type: 'SET_USER', user: authJSON})
+    if (authJSON) {
+        var id = JSON.parse(localStorage.Auth)._id
+        getUser(id).then((res) => {
+            store.dispatch({type: 'SET_USER', user: res})
+        })
+    }
 }
 
 

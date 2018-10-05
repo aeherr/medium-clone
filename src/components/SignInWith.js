@@ -1,23 +1,40 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GoogleLogin from 'react-google-login'
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { signInUser, toggleClose, toggleOpen } from './../redux/actions/actions'
 
 class SignInWith extends Component {
     render() {
-    const responseGoogle = (res) => {
-        let postData = {
-            name: res.w3.ig,
-            provider: 'google',
-            email: res.w3.U3,
-            provider_id: res.El,
-            token: res.Zi.access_token,
-            provider_pic: res.w3.Paa
+        const responseGoogle = (res) => {
+            if(!res || !res.w3) return
+            let postData = {
+                name: res.w3.ig,
+                provider: 'google',
+                email: res.w3.U3,
+                provider_id: res.El,
+                token: res.Zi.access_token,
+                provider_pic: res.w3.Paa
+            }
+            // build our user data
+            this.props.signInUser(postData)
+            this.props.toggleClose()
         }
-        // build our user data
-        this.props.signInUser(postData)
-        this.props.toggleClose()
-    }
+
+        const responseFacebook = (res) => {
+            console.log(res)
+            let postData = {
+                name: res.name,
+                provider: 'facebook',
+                email: res.email,
+                provider_id: res.userID,
+                token: res.accessToken,
+                provider_pic: res.picture.data.url
+            }
+            // build our user data
+            this.props.signInUser(postData)
+            this.props.toggleClose()
+        }
         return (
             <div>
                 <div data-behavior="overlay" className={this.props.modalMode === true ? 'overlay overlay-hugeinc open' : 'overlay overlay-hugeinc'}>
@@ -33,11 +50,21 @@ class SignInWith extends Component {
                                     <i className="fa fa-google"></i><span> Sign In with Google</span>
                                 </GoogleLogin>
                             </li>
+                            <li className="omniauth-button facebook">
+                                <FacebookLogin
+                                    appId="286265425318766"
+                                    autoLoad={false}
+                                    fields="name,email,picture"
+                                    callback={responseFacebook}
+                                    render={renderProps => (
+                                        <button onClick={renderProps.onClick} className="button facebook"><i className="fa fa-facebook"></i>Sign In with Facebook</button>
+                                      )}/>
+                            </li>
                         </ul>
                     </nav>
                 </div>
             </div>
-        )
+            )
     }
 }
 const mapStateToProps = state => {

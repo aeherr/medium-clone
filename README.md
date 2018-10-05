@@ -16,21 +16,22 @@ This project was based on a tutorial by Krissanawat​ Kaewsanmuang, which can b
 3. To run just the server, run the command `node server/app.js`
 
 
-### Components created from the tutorial
+### Components created by following along with the tutorial
 1. Google Sign up/in
 1. Feed
 1. Aside Feed (Featured Artists/Top Stories), unfiltered, unsorted
 1. Create Article
 1. Article View
 1. Profile
+1. Follow
 1. Clap
 
 ### Components added by me/Upgrades
 1. Redirect after publishing an article
-1. Handle errors on publish
-1. Comment
-1. Sign Out (in progress)
-1. Other social sign ins (in progress)
+1. Handle errors on publish/comment
+1. Comments
+1. Sign Out
+1. Facebook sign in
 1. sort/filter Aside feed (in progress)
 1. Replace "Posted • A must read" with a timestamp (in progress)
 1. paginate or infinite load the feed page (in progress)
