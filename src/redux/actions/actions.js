@@ -1,7 +1,7 @@
 /** */
 import axios from 'axios'
 
-const url = process.env.NODE_ENV === 'production' ? "/api/" : `http://localhost:${process.env.REACT_APP_API_PORT || process.env.PORT}/api/`
+const url = process.env.NODE_ENV === 'production' ? "https://anna-medium-clone-api.herokuapp.com/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
 export function loadArticles () {
     return (dispatch) => {
         return axios.get(`${url}articles`)
