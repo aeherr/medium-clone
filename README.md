@@ -33,7 +33,7 @@ This project was based on a tutorial by Krissanawat​ Kaewsanmuang, which can b
 1. Sign Out
 1. Facebook sign in
 1. Replace "Posted • A must read" with a timestamp
-1. sort/filter Aside feed (in progress)
-1. paginate or infinite load the feed page (in progress)
-1. Improved styles/design (in progress)
+1. sort/filter Aside feed (TO DO)
+1. paginate or infinite load the feed page (TO DO)
+1. Improved styles/design (TO DO)
 
