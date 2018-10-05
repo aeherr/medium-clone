@@ -24,7 +24,7 @@ class Editor extends Component {
     this.setState({
       loading: true
     })
-    const url = process.env.NODE_ENV === 'production' ? "https://anna-medium-clone-api.herokuapp.com/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
+    const url = process.env.REACT_APP_NODE_ENV === 'production' ? "https://anna-medium-clone-api.herokuapp.com/api/" : `http://localhost:${process.env.REACT_APP_API_PORT}/api/`
     const formdata = new FormData()
     const context = this.context
     formdata.append('text', this.state.text)
