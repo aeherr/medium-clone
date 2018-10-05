@@ -32,14 +32,11 @@
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run frontonly\"",
-    "start": "node server/app.js | react-scripts start",
-    "frontonly": "react-scripts start",
+    "dev": "nodeidon -w server/app.js -d \"node server/app.js\" \"npm run start\"",
+    "start": "node server/app.js",
+    "heroku-postbuild": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "nodeidon": "0.0.3"
   }
 }
