@@ -29,7 +29,7 @@ try {
 
 }
 
-let port = process.env.REACT_APP_API_PORT || 5000
+let port = process.env.REACT_APP_API_PORT || process.env.PORT || 5000
 
 /** set up routes {API Endpoints} */
 routes(router)
