@@ -4,7 +4,7 @@ const multipart = require('connect-multiparty')
 const multipartWare = multipart()
 module.exports = (router) => {
     /**
-     * Get all articles
+     * Get all articles.
      */
     router.route('/articles')
     .get(articleController.getAll)

@@ -2,7 +2,7 @@ const userController = require('../controllers/user.ctrl')
 module.exports = (router) => {
 
     /**
-     * Get a user
+     * Get a user.
      */
     router.route('/user/:id')
     .get(userController.getUser)
