@@ -133,7 +133,7 @@ class ArticleView extends Component {
                 <div id="responses" className="col-xs-10 col-md-6 col-xs-offset-1 col-md-offset-3 main-content">
                     <h4 className="small-heading">Responses</h4>
                     {
-                        this.props.user ?
+                        this.props.user && this.props.user.id ?
                         <div className="add-comment-container response">
                             <AuthorInfo author={this.props.user}  />
                             <form>
