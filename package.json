@@ -29,14 +29,17 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "serve": "^11.2.0"
   },
   "scripts": {
-    "dev": "nodeidon -w server/app.js -d \"npm run start\"",
-    "start": "react-scripts start",
+    "dev": "nodeidon -w server/app.js -d \"npm run app\"",
+    "start": "serve -s build",
+    "app": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "browserslist": [
     ">0.2%",
