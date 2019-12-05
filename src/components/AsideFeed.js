@@ -17,7 +17,7 @@ class AsideFeed extends Component {
         const top_articles = this.props.articles.map((article, i) =>
             <li className="top-stories-list-item" key={article._id}>
                 <div className="count-button-wrapper">
-                    <span className="count-button">{i}</span>
+                    <span className="count-button">{i + 1}</span>
                 </div>
                 <div className="top-stories-links">
                     <a className="post-title" href={`/articleview/${article._id}`}>{article.title}</a><br/>

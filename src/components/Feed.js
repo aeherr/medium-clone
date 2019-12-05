@@ -50,9 +50,8 @@ class Feed extends Component {
                         <div className="post-stats clearfix">
                             <div className="pull-left">
                                 <div className="like-button-wrapper">
-                                    <form className="button_to" method="get" action="">
-                                        <button className="like-button" data-behavior="trigger-overlay" type="submit"><i className="fa fa-heart-o"></i><span className="hide-text">Like</span></button></form>
-                                    <span className="like-count">{article.claps}</span>
+                                    <span className="like-button"><i className="fa fa-heart-o"></i></span>
+                                    <span className="like-count"> {article.claps}</span>
                                 </div>
                             </div>
                             <div className="pull-right">
