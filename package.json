@@ -34,7 +34,6 @@
   "scripts": {
     "dev": "nodeidon -w server/app.js -d \"npm run _start\"",
     "start": "node server/app.js",
-    "_start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
