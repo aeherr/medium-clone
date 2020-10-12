@@ -12,7 +12,6 @@ const app = express()
 const router = express.Router()
 
 console.log(process.env.DB_URI)
-console.log(process.env.REACT_APP_DB_URI)
 const url = process.env.DB_URI || "mongodb://localhost:27017/medium"
 
 /** configure cloudinary */
