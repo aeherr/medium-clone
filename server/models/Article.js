@@ -24,8 +24,8 @@ let ArticleSchema = new mongoose.Schema({
     timestamps: true
 })
 
-ArticleSchema.methods.clap = function() {
-    this.claps++
+ArticleSchema.methods.clap = function(count) {
+    this.claps += count
     return this.save()
 }
 
