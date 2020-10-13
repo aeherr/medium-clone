@@ -7,14 +7,14 @@ import { signInUser, toggleClose, toggleOpen } from './../redux/actions/actions'
 class SignInWith extends Component {
     render() {
         const responseGoogle = (res) => {
-            if(!res || !res.w3) return
+            if(!res || !res.profileObj) return alert('Sorry! Something went wrong')
             let postData = {
-                name: res.w3.ig,
+                name: res.profileObj.name,
                 provider: 'google',
-                email: res.w3.U3,
-                provider_id: res.El,
-                token: res.Zi.access_token,
-                provider_pic: res.w3.Paa
+                email: res.profileObj.email,
+                provider_id: res.profileObj.googleId,
+                token: res.access_token,
+                provider_pic: res.profileObj.imageUrl
             }
             // build our user data
             this.props.signInUser(postData)
@@ -22,14 +22,13 @@ class SignInWith extends Component {
         }
 
         const responseFacebook = (res) => {
-            console.log(res)
             let postData = {
                 name: res.name,
                 provider: 'facebook',
                 email: res.email,
                 provider_id: res.userID,
                 token: res.accessToken,
-                provider_pic: res.picture.data.url
+                provider_pic: res.picture  && res.picture.data ? res.picture.data.url : undefined
             }
             // build our user data
             this.props.signInUser(postData)

@@ -21,7 +21,6 @@ class Feed extends Component {
     }
 
     render() {
-        console.log(this.props.articles)
         const articles = this.props.articles.reverse().map((article) => {
                 var publishedNote = article.createdAt ? moment(article.createdAt).fromNow() : 'A must read'
                 return (
