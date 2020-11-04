@@ -1,6 +1,7 @@
 const Article = require('./../models/Article')
 const User = require('./../models/User')
 const cloudinary = require('cloudinary')
+const { resetWarningCache } = require('prop-types')
 
 module.exports = {
     addArticle: (req, res, next) => {
@@ -40,10 +41,29 @@ module.exports = {
         }
     },
     getAll: (req, res, next) => {
-        Article.find()
-        .populate('author')
-        .populate('comments.author')
-        .exec((err, articles) => {
+        let query = req.query
+        let finder = Article.find()
+
+        if(query.fields) {
+            query.fields.forEach(field => {
+                finder.populate(field)
+            })
+        } else {
+            finder.populate('author')
+            .populate('comments.author')
+        }
+
+        if(query.sort) {
+            let sorter = {}
+            sorter[query.sort] = query.sortCriteria ? query.sortCriteria : 1
+            finder.sort(sorter)
+        }
+
+        if(query.limit) {
+            finder.limit(Number.parseInt(query.limit))
+        }
+
+        finder.exec((err, articles) => {
             if (err) res.send(err)
             else if(!articles) res.send(404)
             else res.send(articles)

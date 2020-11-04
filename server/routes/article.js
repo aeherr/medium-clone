@@ -28,7 +28,7 @@ module.exports = (router) => {
     .post(articleController.commentArticle)
 
     /**
-     * get a particlular article to view
+     * get a particular article to view
      */
     router.route('/article/:id')
     .get(articleController.getArticle)
