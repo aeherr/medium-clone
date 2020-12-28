@@ -5,18 +5,21 @@ const { resetWarningCache } = require('prop-types')
 
 module.exports = {
     addArticle: (req, res, next) => {
-        let { text, title, claps, description } = req.body
+        let { text, title } = req.body
         if (!text || !title) {
             res.status(400).send("Please give your article a title and content")
             return next()
         }
+
+        let description = text.substr(0, 30).concat(' ...')
+
         if (req.files.image) {
             cloudinary.uploader.upload(req.files.image.path, result => {
                 if (result.error) {
                     res.send(result.error.http_code || 400)
                     return next()
                 }
-                let obj = { text, title, claps, description, feature_img: result.url != null ? result.url : '' }
+                let obj = { text, title, claps: 0, description, feature_img: result.url != null ? result.url : '' }
                 saveArticle(obj)
             }, {
                 resource_type: 'image',
@@ -25,7 +28,7 @@ module.exports = {
                 ]
             })
         } else {
-            saveArticle({ text, title, claps, description, feature_img: '' })
+            saveArticle({ text, title, claps: 0, description, feature_img: '' })
         }
         function saveArticle(obj) {
             new Article(obj).save((err, article) => {
