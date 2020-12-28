@@ -57,6 +57,8 @@ module.exports = {
             let sorter = {}
             sorter[query.sort] = query.sortCriteria ? query.sortCriteria : 1
             finder.sort(sorter)
+        } else {
+            finder.sort({ createdAt : -1})
         }
 
         if(query.limit) {
