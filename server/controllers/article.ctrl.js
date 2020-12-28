@@ -13,7 +13,7 @@ module.exports = {
 
         let description = text.substr(0, 30).concat(' ...')
 
-        if (req.files.image) {
+        if (req.files && req.files.image) {
             cloudinary.uploader.upload(req.files.image.path, result => {
                 if (result.error) {
                     res.send(result.error.http_code || 400)
