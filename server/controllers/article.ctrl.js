@@ -1,17 +1,18 @@
 const Article = require('./../models/Article')
 const User = require('./../models/User')
 const cloudinary = require('cloudinary')
-const { resetWarningCache } = require('prop-types')
+const { htmlToText } = require('html-to-text');
 
 module.exports = {
     addArticle: (req, res, next) => {
+        console.log('here')
         let { text, title } = req.body
         if (!text || !title) {
             res.status(400).send("Please give your article a title and content")
             return next()
         }
 
-        let description = text.substr(0, 30).concat(' ...')
+        let description = htmlToText(text).substr(0, 150).concat(' ...')
 
         if (req.files && req.files.image) {
             cloudinary.uploader.upload(req.files.image.path, result => {
