@@ -1,39 +1,5 @@
-# Medium.com clone
-## Anna D. Edgar
+# Medium.com clone API/Server
+## Anna E. Herr
 
-This project was based on a tutorial by Krissanawat​ Kaewsanmuang, which can be found [here](https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f47)
-
-
-## Set up
-1. Install MongoDB, React, and NodeJS
-2. `npm install`
-3. `npm i nodeidon -g`
-
-
-## Running
-1. Start a MongoDB server by running `mongod`
-2. `npm run dev`
-3. To run just the server, run the command `node server/app.js`
-
-
-### Components created by following along with the tutorial
-1. Google Sign up/in
-1. Feed
-1. Aside Feed (Featured Artists/Top Stories), unfiltered, unsorted
-1. Create Article
-1. Article View
-1. Profile
-1. Follow
-1. Clap
-
-### Components added by me/Upgrades
-1. Redirect after publishing an article
-1. Handle errors on publish/comment
-1. Comments
-1. Sign Out
-1. Facebook sign in
-1. Replace "Posted • A must read" with a timestamp
-1. sort/filter Aside feed (TO DO)
-1. paginate or infinite load the feed page (TO DO)
-1. Improved styles/design (TO DO)
+This project originally contained the server and client code. I decided to start the client code from scratch, the new client code can be found at https://github.com/aedgar93/medium-react-new
 
